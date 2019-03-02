@@ -46,7 +46,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IncludePath>C:\Program Files\Microsoft SDKs\Kinect\v1.7\inc;C:\Software\opencv\opencv\build\include;C:\Software\opencv\opencv\build\include\opencv;C:\Software\opencv\opencv\build\include\opencv2;C:\Software\opencv\freetype\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Qt\Qt5.12.1\5.12.1\msvc2017_64\include;C:\Program Files\Microsoft SDKs\Kinect\v1.7\inc;C:\Software\opencv\opencv\build\include;C:\Software\opencv\opencv\build\include\opencv;C:\Software\opencv\opencv\build\include\opencv2;C:\Software\opencv\freetype\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files\Microsoft SDKs\Kinect\v1.7\lib\amd64;C:\Software\opencv\opencv\build\x64\vc10\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -1,6 +1,6 @@
 ﻿#include "MyMain.h"
 
-
+// 获取骨骼Skeleton Data
 void MyMain::getSkeletonImage()
 {
 	// 骨骼帧信息
@@ -26,6 +26,7 @@ void MyMain::getSkeletonImage()
 	}
 	// 如果标志位未变更，直接结束函数，提高效率
 	if (!bFoundSkeleton) return;
+
 	//平滑骨骼帧, 消除抖动 
 	NuiTransformSmooth(&skeletonFrame, NULL);     
 	// 遍历所有 id
@@ -45,6 +46,8 @@ void MyMain::getSkeletonImage()
 		}
 	}
 }
+
+/*处理图像的每一个像素点*/
 
 void getTheContour(Mat &image, int whichone, Mat &mask)
 {
@@ -90,7 +93,7 @@ void getTheContour(Mat &image, int whichone, Mat &mask)
 				ptrmask[3 * j] = 0;
 				ptrmask[3 * j + 1] = 255;
 				ptrmask[3 * j + 2] = 255;
-			}// id 为 3 的时候，显示蓝色
+			}// id 为 6 的时候，显示蓝色
 			else if (ptr[3 * j + 1] == ptr[3 * j] / 2 && ptr[3 * j + 1] == ptr[3 * j + 2])
 			{
 				ptrmask[3 * j] = 255;
@@ -134,25 +137,34 @@ MyMain::MyMain(void)
 	depthImage.create(240, 320, CV_8UC3);
 	// 有色图初始化 480 * 640
 	colorImage.create(480, 640, CV_8UC3);
-	// 计时器实例化
-	mt = new MyTimer(this);
-	// 脚本器实例化
-	script = new Script(10,5);
+
+	// 计时器实例化，自定义函数mytimer
+	// 没有细看
+	mt = new MyTimer(this);	
+
+	// Qt脚本器实例化;
+	/*界面上显示的测量时间倒计时，以及显示文字，是否可以换成语音播报*/ 
+	script = new Script(7,4);
+
 	// 身体数据初始化
 	armShow = bellyShow = legShow = heightShow = 0;
+
 	// 骨骼点初始化
 	for (int i = 0; i < NUI_SKELETON_COUNT; i++)
 		for (int j = 0; j < NUI_SKELETON_POSITION_COUNT; j++)
-			skeletonPoint[i][j] = cvPoint(0, 0);
+			skeletonPoint[i][j] = cvPoint(0, 0);			//CvPoint：表示一个坐标为整数的二维点，是一个包含integer类型成员x和y的简单结构体。
+
 	// 有色摄像头事件，深度摄像头事件，骨骼点事件初始化
 	colorEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 	depthEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 	skeletonEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+
 	// 有色图像流，深度图像流初始化
 	colorStreamHandle = NULL;
 	depthStreamHandle = NULL;
 
-	
+	/*进行Kinect的连接和初始化 */
+
 	hr = NuiInitialize(NUI_INITIALIZE_FLAG_USES_COLOR | NUI_INITIALIZE_FLAG_USES_DEPTH_AND_PLAYER_INDEX | NUI_INITIALIZE_FLAG_USES_SKELETON);
 	if (hr != S_OK) 
 	{ 
@@ -184,12 +196,15 @@ MyMain::MyMain(void)
 		NuiShutdown();
 		return;
 	}
+
 	// 初始化人体框，id 偏移
 	r = rect + 1;
 	// 初始化 id
 	id = -1;
+
 	// 计时器开始计时
 	mt->Start();
+
 	// fixed 是设置为定点输出格式
 	// floatfield 是设置输出时按浮点格式，小数点后有6位数字
 	oss.setf(ios_base::fixed, ios_base::floatfield);
@@ -213,15 +228,18 @@ void MyMain::TikSink(long time)
 	height.clear();
 }
 
+/*************获取Color and Depth Data***************/
 void MyMain::getColorImage()
 {
 	// 初始化 colorFrame
 	const NUI_IMAGE_FRAME *colorFrame = NULL;
+
 	// 从 Nui 的流中获取下一帧，并锁定
 	NuiImageStreamGetNextFrame(colorStreamHandle, 0, &colorFrame);
 	INuiFrameTexture *pTexture = colorFrame->pFrameTexture;
 	NUI_LOCKED_RECT LockedRect;
 	pTexture->LockRect(0, &LockedRect, NULL, 0);
+
 	// 如果有下一帧
 	if (LockedRect.Pitch != 0)
 	{	// 遍历 colorImage 行
@@ -256,11 +274,13 @@ void MyMain::getColorImage()
 	// 解除锁定，释放这一帧
 	pTexture->UnlockRect(0);
 	NuiImageStreamReleaseFrame(colorStreamHandle, colorFrame);
+
 	// 初始化人物有色填充图和其放大版（为适应深度摄像机和有色摄像机不同的分辨率）
 	Mat bodyColor;
 	bodyColor.create(240, 320, CV_8UC3);
 	Mat bigBodyColor;
 	bigBodyColor.create(480, 640, CV_8UC3);
+
 	// 人物有色填充图 背景设置为全黑
 	bodyColor.setTo(0);
 	// 从深度相机获得带人物填充的图
@@ -272,9 +292,12 @@ void MyMain::getColorImage()
 }
 
 void MyMain::getDepthImage()
-{	// 遍历人物 id，初始化人物矩形
+{	
+	// 遍历人物 id，初始化人物矩形
+	// 人体所在矩形，因为有一个字节的 id，所以有 8 个
 	for (int i = -1; i < 7; i++)
 		r[i] = Rect(-1, -1, 0, 0);
+
 	// 初始化 depthFrame
 	const NUI_IMAGE_FRAME *depthFrame = NULL;
 	// 从 Nui 的流中获取下一帧，并锁定
@@ -282,6 +305,7 @@ void MyMain::getDepthImage()
 	INuiFrameTexture *pTexture = depthFrame->pFrameTexture;
 	NUI_LOCKED_RECT LockedRect;
 	pTexture->LockRect(0, &LockedRect, NULL, 0);
+
 	// 初始化有色点 q
 	RGBQUAD q;
 	// 如果获得下一帧
@@ -365,6 +389,7 @@ void MyMain::getDepthImage()
 				max = r[i];
 			}
 		// 身体数据填充到身体数据流
+		/**************3.函数进行第三次跳转，获取bodydate*********/
 		height.append(r[id].height);
 		arm.append(bodyDate.getDate("arm", id));
 		belly.append(bodyDate.getDate("belly", id));

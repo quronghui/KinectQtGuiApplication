@@ -38,7 +38,7 @@ Script::Script(char firstTestReadyTime, char secondTestReadyTime)
 	this->firstTestReadyTime = firstTestReadyTime;
 	this->secondTestReadyTime = secondTestReadyTime;
 
-
+	// 初始化数据
 	height = 0;
 	arm = 0;
 	belly1 = 0;
@@ -49,6 +49,7 @@ Script::Script(char firstTestReadyTime, char secondTestReadyTime)
 
 string Script::Run(long time)
 {
+	// 返回要显示的 tips 字符串，但是我没有看懂逻辑
 	if (mode == MODE::AOTO_RUN_ONCE || mode == MODE::AUTO_RUN)
 	{
 		if (time < firstTestReadyTime) return tips[0] + "（" + ToString(firstTestReadyTime - time) + "）";

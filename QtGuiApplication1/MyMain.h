@@ -55,8 +55,7 @@ private:
 	void TikSink(long time);			// 响应一个每秒发生的事件
 	void getColorImage();				// 处理有色图
 	void getDepthImage();				// 处理深度图
-	// 处理骨骼点图 
-	void getSkeletonImage();
+	void getSkeletonImage();			// 处理骨骼点图 
 	// 使用当前点扩充人体矩形
 	inline void updateRectangle(Rect *r, Point p, int player)
 	{

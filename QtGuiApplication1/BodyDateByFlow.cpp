@@ -1,12 +1,14 @@
 ﻿#include "BodyDateByFlow.h"
 
+// 摄像头采集的frame，每秒30帧
 BodyDateByFlow::BodyDateByFlow(void)
 {	// 一秒有 30 帧，设置 35 保险 
 	dates.reserve(35);
 }
 
 int BodyDateByFlow::Min()
-{
+{	
+	/* 这里不明白设置的为是啥 9999 */
 	int count = dates.size();
 	int min = 9999;
     for (int i = 0; i < count; i++)

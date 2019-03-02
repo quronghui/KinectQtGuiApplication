@@ -1,36 +1,60 @@
 ﻿#include "QtGuiApplication1.h"
 #include <QFileDialog>
 
+// Qt Gui 界面要展示的内容
+
+// 示例代码
+//widget::widget(QWidget *parent)
+//	: QMainWindow(parent)
+//{
+//	ui.setupUi(this);
+//}
 
 QtGuiApplication1::QtGuiApplication1(QWidget *parent)
 	: QMainWindow(parent)
 {
 	// qt 初始化
 	ui.setupUi(this);
+	
 	// 设置一个 qt 计时器
 	updateTime = new QTimer(this);
+
 	// 连接重置按钮的点击事件和 reset() 函数
 	connect(ui.pushButton,SIGNAL(clicked()),this,SLOT(reset()));
+
 	// 连接计时器的时间到事件和 updateFrame() 函数
 	connect(updateTime, SIGNAL(timeout()), this, SLOT(updateFrame()));
+	
 	// 计时器开始计时 33 个毫秒
 	updateTime->start(33);
+	
 	// 全屏
 	this->setWindowState(Qt::WindowMaximized);
+	// this->setWindowState(Qt::WindowNoState);		//test 
+	
 	// MyMain 类构造
 	m = new MyMain();
-}
+}	
+/*
+* 2.函数第2次跳转，to Mymain()
+*/ 
+
+
+
+// 两个槽函数，为了响应点击事件
 void QtGuiApplication1::updateFrame()
 {
 	// 调用 update() 函数，里面包含 paintEvent(QPaintEvent*) 函数
 	this->update();
 }
+
 void QtGuiApplication1::reset()
 {
-	delete(m);
-	m = new MyMain();
+	delete(m);					
+	m = new MyMain();		
 	updateTime->start(33);
 }
+
 void QtGuiApplication1::paintEvent(QPaintEvent *event)
 {
 	// 当出现奇怪的情况，会返回 false 
@@ -43,12 +67,14 @@ void QtGuiApplication1::paintEvent(QPaintEvent *event)
 			ui.stackedWidget->setCurrentIndex(1);
 			// 停止计时器
 			updateTime->stop();
+
 			// 对后台传来的数据进行绑定
 			ui.hight->setText(QString::fromLocal8Bit(m->GetHight().data()));
 			ui.arm->setText(QString::fromLocal8Bit(m->GetArm().data()));
 			ui.belly->setText(QString::fromLocal8Bit(m->GetBelly().data()));
 			ui.leg->setText(QString::fromLocal8Bit(m->GetLeg().data()));
 			ui.WHtR->setText(QString::fromLocal8Bit(m->GetWHtR().data()));
+
 			// 将数据编入数组，使遍历与判断更容易
 			string s[] = { "hight", "arm", "belly", "leg", "WHtR" };
 			QLabel* q[] = {ui.hight, ui.arm, ui.belly, ui.leg, ui.WHtR};

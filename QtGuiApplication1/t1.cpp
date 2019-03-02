@@ -27,7 +27,6 @@ void addImage1(Mat image, Mat logoImage)
 	drawContours(logo, contours, -1, Scalar(255), 2);
 
 
-
 	imshow("!!", logo);
 	waitKey(0);
 	Mat imgToDo = image.clone();

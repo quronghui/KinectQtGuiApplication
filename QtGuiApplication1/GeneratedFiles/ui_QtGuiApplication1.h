@@ -109,18 +109,33 @@ public:
         palette.setBrush(QPalette::Active, QPalette::ButtonText, brush);
         palette.setBrush(QPalette::Active, QPalette::Base, brush1);
         palette.setBrush(QPalette::Active, QPalette::Window, brush1);
+        QBrush brush2(QColor(255, 0, 0, 128));
+        brush2.setStyle(Qt::NoBrush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
+#endif
         palette.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
         palette.setBrush(QPalette::Inactive, QPalette::Button, brush1);
         palette.setBrush(QPalette::Inactive, QPalette::Text, brush);
         palette.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
         palette.setBrush(QPalette::Inactive, QPalette::Base, brush1);
         palette.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        QBrush brush3(QColor(255, 0, 0, 128));
+        brush3.setStyle(Qt::NoBrush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
+#endif
         palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
         palette.setBrush(QPalette::Disabled, QPalette::Button, brush1);
         palette.setBrush(QPalette::Disabled, QPalette::Text, brush);
         palette.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
         palette.setBrush(QPalette::Disabled, QPalette::Base, brush1);
         palette.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        QBrush brush4(QColor(255, 0, 0, 128));
+        brush4.setStyle(Qt::NoBrush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush4);
+#endif
         tips->setPalette(palette);
         QFont font;
         font.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));

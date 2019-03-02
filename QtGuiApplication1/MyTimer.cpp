@@ -6,9 +6,10 @@ MyTimer::MyTimer()
 	fps = 0;
 }
 
+// 这个才是入口函数
 MyTimer::MyTimer(MyTikSink* _mSink):mSink(_mSink)
 {
-	frames = 0;
+	frames = 0;						// 定义帧的初始值
 	fps = 0;
 	is_stop = true;
 }

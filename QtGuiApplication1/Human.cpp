@@ -6,6 +6,8 @@ Human::Human(void)
 {
 }
 
+// 还没有找到在哪里调用Hunman函数
+// 函数的功能便是接收人体的数据
 Human::Human(int height, int arm, int belly, int leg)
 {
 	heightPX = height;

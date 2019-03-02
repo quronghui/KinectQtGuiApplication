@@ -1,10 +1,12 @@
 ﻿#include "BodyDate.h"
 
+// Skeleton 骨骼点数据时，使用的函数
 BodyDate::BodyDate(){}
 BodyDate::BodyDate(CvPoint skeletonPoint[][NUI_SKELETON_POSITION_COUNT])
 {	// 遍历所有 id
 	for (int i = 0; i < 8; i++)
 	{	// 使用手肘关节，臀部关节，膝盖与胯部关节中间点作为基准点
+		// Position一个SkeletonPoint类型的字段，代表所有骨骼的中间点。
 		body[i][ARM_LE] = cv::Rect(skeletonPoint[i][NUI_SKELETON_POSITION_ELBOW_LEFT], skeletonPoint[i][NUI_SKELETON_POSITION_ELBOW_LEFT]);
 		body[i][ARM_RI] = cv::Rect(skeletonPoint[i][NUI_SKELETON_POSITION_ELBOW_RIGHT], skeletonPoint[i][NUI_SKELETON_POSITION_ELBOW_RIGHT]);
 		body[i][BELLY_LE] = cv::Rect(skeletonPoint[i][NUI_SKELETON_POSITION_HIP_CENTER], skeletonPoint[i][NUI_SKELETON_POSITION_HIP_CENTER]);
