@@ -222,3 +222,63 @@
 
 1. 使用之前的环境，将编译生成的 .exe文件拷到原先的平板上的环境。
 
+# QtGuiApplication Code
+
+## main.cpp
+
++ [建立Qt Gui 的函数](https://quronghui.github.io/2019/03/01/QtAndVs/)
+
+1. 主函数 main.cpp 就是QtGui的主函数；
+2.  QtGuiApplication1.h and QtGuiApplication1.cpp
+   + 里面定义之后的字段以及函数声明，以及槽的实现，都是在这里，Qt的逻辑功能设计主要是修改这个文件。
+   + 这个就是逻辑函数
+
+## QtGuiApplication1.cpp
+
+1. QtGuiApplication1.h
+
+   ```
+   // QtGuiApplication1(工程的名字Widget)类的头文件，定义一些字段和函数声明，
+   //包括最重要的slots（槽）函数的声明，以及界面ui句柄，以便通过“ui.***”的方式访问到界面的各个控件，
+   // 比如访问界面的Label控件里的文字可以这样：ui.label->text();就是字面意思，很容易理解。
+   ```
+
+2. QtGuiApplication1.cpp
+
+   + 逻辑代码文件；
+   + 所有实现功能的函数文件
+
+## Mymain.cpp
+
+1. /*进行Kinect的连接和初始化 */
+
+2. 获取Color , Skeleton, and Depth Data
+
+3. 自动完成拍摄正面和侧面
+
+   ```
+   调用函数：
+   （1）mt = new MyTimer(this);	
+    (2) /*界面上显示的测量时间倒计时，以及显示文字，是否可以换成语音播报*/ 
+   	script = new Script(7,4);
+   （3）unit.cpp
+   ```
+
+4. 		// 身体数据填充到身体数据流
+   		/**************3.函数进行第三次跳转，获取bodydate*********/
+
+##  bodydate.cpp
+
+1. Skeleton 骨骼点数据时，使用的函数
+
+##  bodydateByFlow.cpp
+
+1. // 摄像头采集的frame，每秒30帧
+
+## Human
+
+1. 没找到在哪里调用。
+
+## Learning
+
+1. 一个学习的函数，不在工程里。
