@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -38,7 +39,7 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QSpacerItem *verticalSpacer_2;
     QWidget *page_2;
-    QVBoxLayout *verticalLayout_3;
+    QGridLayout *gridLayout;
     QSpacerItem *verticalSpacer_11;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_3;
@@ -66,7 +67,7 @@ public:
     {
         if (QtGuiApplication1Class->objectName().isEmpty())
             QtGuiApplication1Class->setObjectName(QString::fromUtf8("QtGuiApplication1Class"));
-        QtGuiApplication1Class->resize(2358, 1709);
+        QtGuiApplication1Class->resize(836, 1255);
         centralWidget = new QWidget(QtGuiApplication1Class);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setStyleSheet(QString::fromUtf8(""));
@@ -139,7 +140,7 @@ public:
         tips->setPalette(palette);
         QFont font;
         font.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
-        font.setPointSize(72);
+        font.setPointSize(28);
         tips->setFont(font);
         tips->setAcceptDrops(false);
         tips->setStyleSheet(QString::fromUtf8("color: rgb(255, 0, 0);\n"
@@ -166,13 +167,13 @@ public:
         page_2 = new QWidget();
         page_2->setObjectName(QString::fromUtf8("page_2"));
         page_2->setStyleSheet(QString::fromUtf8("background-color: rgba(0, 0, 0, 100);"));
-        verticalLayout_3 = new QVBoxLayout(page_2);
-        verticalLayout_3->setSpacing(6);
-        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        gridLayout = new QGridLayout(page_2);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         verticalSpacer_11 = new QSpacerItem(78, 314, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_3->addItem(verticalSpacer_11);
+        gridLayout->addItem(verticalSpacer_11, 0, 0, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
@@ -209,11 +210,11 @@ public:
         horizontalLayout_2->addItem(horizontalSpacer_5);
 
 
-        verticalLayout_3->addLayout(horizontalLayout_2);
+        gridLayout->addLayout(horizontalLayout_2, 1, 0, 1, 1);
 
         verticalSpacer_12 = new QSpacerItem(78, 314, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_3->addItem(verticalSpacer_12);
+        gridLayout->addItem(verticalSpacer_12, 2, 0, 1, 1);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
@@ -247,11 +248,11 @@ public:
         horizontalLayout_3->addItem(horizontalSpacer_7);
 
 
-        verticalLayout_3->addLayout(horizontalLayout_3);
+        gridLayout->addLayout(horizontalLayout_3, 3, 0, 1, 1);
 
         verticalSpacer_13 = new QSpacerItem(78, 314, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_3->addItem(verticalSpacer_13);
+        gridLayout->addItem(verticalSpacer_13, 4, 0, 1, 1);
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
@@ -274,10 +275,7 @@ public:
 
         pushButton = new QPushButton(page_2);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
-        font2.setPointSize(28);
-        pushButton->setFont(font2);
+        pushButton->setFont(font);
         pushButton->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
 
@@ -288,11 +286,11 @@ public:
         horizontalLayout_6->addItem(horizontalSpacer_10);
 
 
-        verticalLayout_3->addLayout(horizontalLayout_6);
+        gridLayout->addLayout(horizontalLayout_6, 5, 0, 1, 1);
 
         verticalSpacer_14 = new QSpacerItem(78, 314, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_3->addItem(verticalSpacer_14);
+        gridLayout->addItem(verticalSpacer_14, 6, 0, 1, 1);
 
         stackedWidget->addWidget(page_2);
 

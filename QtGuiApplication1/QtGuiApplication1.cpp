@@ -34,12 +34,7 @@ QtGuiApplication1::QtGuiApplication1(QWidget *parent)
 	
 	// MyMain 类构造
 	m = new MyMain();
-}	
-/*
-* 2.函数第2次跳转，to Mymain()
-*/ 
-
-
+}
 
 // 两个槽函数，为了响应点击事件
 void QtGuiApplication1::updateFrame()
@@ -51,7 +46,7 @@ void QtGuiApplication1::updateFrame()
 void QtGuiApplication1::reset()
 {
 	delete(m);					
-	m = new MyMain();		
+	m = new MyMain();
 	updateTime->start(33);
 }
 
@@ -67,14 +62,12 @@ void QtGuiApplication1::paintEvent(QPaintEvent *event)
 			ui.stackedWidget->setCurrentIndex(1);
 			// 停止计时器
 			updateTime->stop();
-
 			// 对后台传来的数据进行绑定
 			ui.hight->setText(QString::fromLocal8Bit(m->GetHight().data()));
 			ui.arm->setText(QString::fromLocal8Bit(m->GetArm().data()));
 			ui.belly->setText(QString::fromLocal8Bit(m->GetBelly().data()));
 			ui.leg->setText(QString::fromLocal8Bit(m->GetLeg().data()));
 			ui.WHtR->setText(QString::fromLocal8Bit(m->GetWHtR().data()));
-
 			// 将数据编入数组，使遍历与判断更容易
 			string s[] = { "hight", "arm", "belly", "leg", "WHtR" };
 			QLabel* q[] = {ui.hight, ui.arm, ui.belly, ui.leg, ui.WHtR};

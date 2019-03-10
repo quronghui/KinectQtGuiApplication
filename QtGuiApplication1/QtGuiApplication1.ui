@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2358</width>
-    <height>1709</height>
+    <width>836</width>
+    <height>1255</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -259,7 +259,7 @@
               <property name="font">
                <font>
                 <family>黑体</family>
-                <pointsize>72</pointsize>
+                <pointsize>28</pointsize>
                </font>
               </property>
               <property name="acceptDrops">
@@ -313,8 +313,8 @@ background-color: rgba(0, 0, 0, 50);</string>
        <property name="styleSheet">
         <string notr="true">background-color: rgba(0, 0, 0, 100);</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
          <spacer name="verticalSpacer_11">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -327,7 +327,7 @@ background-color: rgba(0, 0, 0, 50);</string>
           </property>
          </spacer>
         </item>
-        <item>
+        <item row="1" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <spacer name="horizontalSpacer_3">
@@ -408,7 +408,7 @@ background-color: rgba(0, 0, 0, 50);</string>
           </item>
          </layout>
         </item>
-        <item>
+        <item row="2" column="0">
          <spacer name="verticalSpacer_12">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -421,7 +421,7 @@ background-color: rgba(0, 0, 0, 50);</string>
           </property>
          </spacer>
         </item>
-        <item>
+        <item row="3" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <spacer name="horizontalSpacer_6">
@@ -502,7 +502,7 @@ background-color: rgba(0, 0, 0, 50);</string>
           </item>
          </layout>
         </item>
-        <item>
+        <item row="4" column="0">
          <spacer name="verticalSpacer_13">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -515,7 +515,7 @@ background-color: rgba(0, 0, 0, 50);</string>
           </property>
          </spacer>
         </item>
-        <item>
+        <item row="5" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
            <spacer name="horizontalSpacer_11">
@@ -596,7 +596,7 @@ background-color: rgba(0, 0, 0, 50);</string>
           </item>
          </layout>
         </item>
-        <item>
+        <item row="6" column="0">
          <spacer name="verticalSpacer_14">
           <property name="orientation">
            <enum>Qt::Vertical</enum>

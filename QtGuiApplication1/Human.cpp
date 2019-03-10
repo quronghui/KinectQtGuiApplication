@@ -1,6 +1,6 @@
 ﻿#include "Human.h"
 
-int Human::heightCM = 175;
+int Human::heightCM = 160;
 
 Human::Human(void)
 {

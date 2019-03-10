@@ -212,16 +212,6 @@
    copy  xxx.dll files to C:\Windows\System32
    ```
 
-# VS2017 项目打包部署（.exe files）
-
-1. [参考链接](https://blog.csdn.net/u010638673/article/details/80652831)
-
-1. 迁移安装后的 .exe 缺少运行的环境，因此还是不成功。
-
-## 目前采取的方式
-
-1. 使用之前的环境，将编译生成的 .exe文件拷到原先的平板上的环境。
-
 # QtGuiApplication Code
 
 ## main.cpp
@@ -265,7 +255,7 @@
    ```
 
 4. 		// 身体数据填充到身体数据流
-   		/**************3.函数进行第三次跳转，获取bodydate*********/
+      		/**************3.函数进行第三次跳转，获取bodydate*********/
 
 ##  bodydate.cpp
 
@@ -282,3 +272,47 @@
 ## Learning
 
 1. 一个学习的函数，不在工程里。
+
+# VS2017 项目打包部署（.exe files）
+
+- [参考链接](https://blog.csdn.net/u010638673/article/details/80652831)
+
+1. [ Vs的部署方式 部署连接，Mircosoft官网](https://docs.microsoft.com/zh-cn/previous-versions/visualstudio/visual-studio-2010/e2444w33%28v%3dvs.100%29)
+
+## Vs + Qt 的应用程序发布部署
+
+- [通过编译Release 得到可执行文件exe，生成相关可执行文件](https://blog.csdn.net/china_jeffery/article/details/78402623)
+
+1.  将需要发布的exe（Release ）文件编译后（如QtGuiApplication1.exe），放到单独的目录。
+
+2. 在“开始菜单”启动Qt 5.9.1 32-bit for Desktop (MSVC 2015);
+
+   1.  Win + R 进去 cmd编辑；
+
+   2. cd  C:\Software\kinect\QtGuiApplication1\x64\Release  进入 exe 文件的目录
+
+   3. 执行命令
+
+      ```
+      windeployqt.exe QtGuiApplication1.exe --qmldir C:\Qt\Qt5.12.1\5.12.1\msvc2017_64\qml
+      ```
+
+   4. 生成运行时需要的文件。（源程序发生改变，需要重新生成一次）
+
+3. Vs 2017的依赖库
+
+   ```
+   进入路径
+   C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Remote Debugger\x64
+   拷贝文件
+   api-ms-win-core-* 
+   concrt140.dll
+   msvcp140.dll
+   ucrtbase.dll
+   vcruntime140.dll
+   粘贴到 *步骤一的目录下*
+   ```
+
+4. 这样迁移到相同屏幕尺寸的电脑下，就可以运行了。
+
+5. 如果出现Qt提示的文字超出界面，修改字体的大小就能自适应平板了。
