@@ -214,6 +214,10 @@
 
 # QtGuiApplication Code
 
+![代码逻辑](https://github.com/quronghui/KinectQtGuiApplication/blob/master/code1.jpg)
+
+![功能函数](https://github.com/quronghui/KinectQtGuiApplication/blob/master/code2.jpg)
+
 ## main.cpp
 
 + [建立Qt Gui 的函数](https://quronghui.github.io/2019/03/01/QtAndVs/)
