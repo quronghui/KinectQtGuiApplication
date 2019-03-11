@@ -4,8 +4,6 @@
 
 [TOC]
 
-
-
 # Kinect in Windows
 
 - [Kinect in Windows 开发指南 ](https://blog.csdn.net/cz19800823/article/list/1?)
